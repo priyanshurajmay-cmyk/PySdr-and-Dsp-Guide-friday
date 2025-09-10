@@ -138,3 +138,10 @@ There isn’t really such thing as a “negative frequency” when it comes to t
 <img width="900" height="298" alt="image" src="https://github.com/user-attachments/assets/53084b6b-0c1c-4f81-aa0f-b1b76b1cf7dd" />
 
 
+<img width="1007" height="375" alt="image" src="https://github.com/user-attachments/assets/f3f809b8-aed3-435b-888d-8ce509b8d15c" />
+
+**We tuned the SDR to 100 MHz. So the signal that was at about 97.5 MHz shows up at -2.5 MHz when we represent it digitally, which is technically a negative frequency. In reality it’s just a frequency lower than the center frequency.**
+
+
+
+
