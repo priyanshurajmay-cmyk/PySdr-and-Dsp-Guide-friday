@@ -79,4 +79,16 @@ Time-frequency pairs refer to the relationship between a signal's properties in 
 
 ![](https://pysdr.org/_images/dc-signal.png)
 
+## Fourier Transform
+
+The Fourier Transform is a mathematical tool that converts a signal from the time domain to the frequency domain and back.
+
+1. The first equation is the Continuous Fourier Transform, which takes a signal over time, x(t), and gives you its frequency content, X(f). It's used for theoretical math problems.
+
+2. The third equation is the Discrete Fourier Transform (DFT), the digital version used in code. It replaces the continuous integral with a summation over a set of samples, which is what computers use.
+
+
+## Time-Frequency Properties
+
+
 
