@@ -197,6 +197,56 @@ Got the Code running and the required plots
 
 <img width="2156" height="1375" alt="image" src="https://github.com/user-attachments/assets/1cd2dcef-388e-4d7a-ac63-203dac3883e6" />
 
+## Windowing and why its needed
+When we use an FFT to measure the frequency components of our signal, the FFT assumes that it’s being given a piece of a periodic signal. It behaves as if the piece of signal we provided continues to repeat indefinitely. It’s as if the last sample of the slice connects back to the first sample. It stems from the theory behind the Fourier Transform. It means that we want to avoid sudden transitions between the first and last sample because sudden transitions in the time domain look like many frequencies, and in reality our last sample doesn’t actually connect back to our first sample. To put it simply: if we are doing an FFT of 100 samples, using np.fft.fft(x), we want x[0] and x[99] to be equal or close in value.
+
+<img width="1288" height="586" alt="image" src="https://github.com/user-attachments/assets/1a26b0e3-03c2-4d18-aceb-5c1a0592b51e" />
+
+A basic window in python for previous example is ```s = s * np.hamming(100)```
+
+## FFT Sizing
+The number of data samples used to perform a single Fast Fourier Transform (FFT) calculation. This process converts a signal from the time domain to the frequency domain, which is essential for creating a visual spectrogram.
+
+**The Key Trade-off: Time vs. Frequency
+The size of the FFT is a critical trade-off between two types of resolution:**
+
+1. Frequency Resolution: A larger FFT size provides better frequency resolution, allowing you to distinguish between very close frequencies. Think of this as zooming in on the frequency spectrum to see fine details.
+
+2. Time Resolution: A smaller FFT size provides better time resolution, enabling you to see rapid, quick changes in the signal. This is like a fast camera shutter, capturing quick events.
+
+Essentially, you can't have both at the same time. A large FFT size gives you a detailed look at frequencies but blurs fast changes, while a small FFT size captures quick changes but with less detail in the frequency spectrum. The choice of FFT size depends on whether you're looking for static, precise frequencies or for dynamic, fleeting events.
+
+## Spectrogram/Waterfall
+A spectrogram is the plot that shows frequency over time. It is simply a bunch of FFTs stacked together (vertically, if you want frequency on the horizontal axis).
+
+![](https://pysdr.org/_images/spectrogram_diagram.svg)
+
+**Got the required spectrogram after running the example code**
+```
+import numpy as np
+import matplotlib.pyplot as plt
+
+sample_rate = 1e6
+
+# Generate tone plus noise
+t = np.arange(1024*1000)/sample_rate # time vector
+f = 50e3 # freq of tone
+x = np.sin(2*np.pi*f*t) + 0.2*np.random.randn(len(t))
+# simulate the signal above, or use your own signal
+
+fft_size = 1024
+num_rows = len(x) // fft_size # // is an integer division which rounds down
+spectrogram = np.zeros((num_rows, fft_size))
+for i in range(num_rows):
+    spectrogram[i,:] = 10*np.log10(np.abs(np.fft.fftshift(np.fft.fft(x[i*fft_size:(i+1)*fft_size])))**2)
+
+plt.imshow(spectrogram, aspect='auto', extent = [sample_rate/-2/1e6, sample_rate/2/1e6, len(x)/sample_rate, 0])
+plt.xlabel("Frequency [MHz]")
+plt.ylabel("Time [s]")
+plt.show()
+```
+
+<img width="1635" height="1278" alt="image" src="https://github.com/user-attachments/assets/9240c646-5bac-4323-aafd-f3b45efc42b2" />
 
 
 
