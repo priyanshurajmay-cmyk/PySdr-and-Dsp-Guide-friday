@@ -105,3 +105,29 @@ Frequency shift is integral to DSP because we will want to shift signals up and 
 ![](https://pysdr.org/_images/freq-shift-diagram.svg)
 
 **3. Scaling in Time Property:**
+
+<img width="310" height="106" alt="image" src="https://github.com/user-attachments/assets/9a0bfa63-e455-4b18-aa03-dc906def74d0" />
+
+Scaling in time essentially shrinks or expands the signal in the x-axis. What this property tells us is that scaling in the time domain causes inverse scaling in the frequency domain. For example, when we transmit bits faster we have to use more bandwidth. The property helps to explain why higher data rate signals take up more bandwidth/spectrum. If time-frequency scaling was proportional instead of inversely proportional, cellular carriers would be able to transmit all the bits per second they wanted without paying billions for spectrum!
+
+<img width="1555" height="341" alt="image" src="https://github.com/user-attachments/assets/1f3f08d9-a3e1-4a26-b06d-251adc5f93be" />
+
+
+**4. Convolution in Time Property:** When we convolve time domain signals, it’s equivalent to multiplying the frequency domain versions of those two signals. It is very different from adding together two signals.
+![](https://pysdr.org/_images/two-signals.svg)
+
+**5. Convolution in Frequency Property:** The convolution property works in reverse
+
+## Fast Fourier Transform (FFT)
+The Fast Fourier Transform (FFT) is simply an algorithm to compute the discrete Fourier Transform.
+**The FFT is a function with one input and one output. It converts a signal from time to frequency:**
+
+<img width="732" height="131" alt="image" src="https://github.com/user-attachments/assets/342bbf54-ef2d-4337-a392-0f53697fd0d6" />
+
+We will only be dealing with 1 dimension FFTs in this textbook (2D is used for image processing and other applications). For our purposes, think of the FFT function as having one input: a vector of samples, and one output: the frequency domain version of that vector of samples. **The size of the output is always the same as the size of the input. If I feed 1,024 samples into the FFT, I will get 1,024 out. The confusing part is that the output will always be in the frequency domain, and thus the “span” of the x-axis if we were to plot it doesn’t change based on the number of samples in the time domain input.** Let’s visualize that by looking at the input and output arrays, along with the units of their indices:
+
+<img width="1619" height="323" alt="image" src="https://github.com/user-attachments/assets/c0dc2c67-d26f-48c6-9ad2-104a66026744" />
+
+**Because the output is in the frequency domain, the span of the x-axis is based on the sample rate.**
+**When we use more samples for the input vector, we get a better resolution in the frequency domain (in addition to processing more samples at once).**
+
