@@ -131,3 +131,10 @@ We will only be dealing with 1 dimension FFTs in this textbook (2D is used for i
 **Because the output is in the frequency domain, the span of the x-axis is based on the sample rate.**
 **When we use more samples for the input vector, we get a better resolution in the frequency domain (in addition to processing more samples at once).**
 
+## Negative Frequencies
+There isn’t really such thing as a “negative frequency” when it comes to transmitting/receiving RF signals, it’s just a representation we use. Here’s an intuitive way to think about it. Consider we tell our SDR to tune to 100 MHz (the FM radio band) and sample at a rate of 10 MHz. In other words, we will view the spectrum from 95 MHz to 105 MHz. Perhaps there are three signals present:
+
+
+<img width="900" height="298" alt="image" src="https://github.com/user-attachments/assets/53084b6b-0c1c-4f81-aa0f-b1b76b1cf7dd" />
+
+
