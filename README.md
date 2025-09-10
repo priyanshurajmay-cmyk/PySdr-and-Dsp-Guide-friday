@@ -97,5 +97,11 @@ Time-frequency properties are fundamental relationships between how a signal beh
 
 <img width="334" height="84" alt="image" src="https://github.com/user-attachments/assets/26364231-64d3-4489-a9ca-1d8c9f40dee6" />
 
+This property tells us that if we take a signal x(t) and multiply it by a sine wave, then in the frequency domain we get x(f) except shifted by a certain frequency, f0. This shift in frequency may be easier to visualize:
+![](https://pysdr.org/_images/freq-shift.svg)
 
+Frequency shift is integral to DSP because we will want to shift signals up and down in frequency for many reasons. This property tells us how to do that (multiply by a sine wave). Here’s another way to visualize this property:
 
+![](https://pysdr.org/_images/freq-shift-diagram.svg)
+
+**3. Scaling in Time Property:**
