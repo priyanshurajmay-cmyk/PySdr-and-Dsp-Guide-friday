@@ -91,4 +91,11 @@ The Fourier Transform is a mathematical tool that converts a signal from the tim
 ## Time-Frequency Properties
 Time-frequency properties are fundamental relationships between how a signal behaves in the time domain and its corresponding content in the frequency domain. These properties are critical for understanding and manipulating signals in digital signal processing (DSP) and software-defined radio (SDR).
 
+**1. Linearity Property:** If we add two signals in time, then the frequency domain version will also be the two frequency domain signals added together. It also tells us that if we multiply either one by a scaling factor, the frequency domain will also scale by the same amount.
+
+**2. Frequency Shift Property:** 
+
+<img width="334" height="84" alt="image" src="https://github.com/user-attachments/assets/26364231-64d3-4489-a9ca-1d8c9f40dee6" />
+
+
 
