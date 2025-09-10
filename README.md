@@ -114,6 +114,7 @@ Scaling in time essentially shrinks or expands the signal in the x-axis. What th
 
 
 **4. Convolution in Time Property:** When we convolve time domain signals, it’s equivalent to multiplying the frequency domain versions of those two signals. It is very different from adding together two signals.
+
 ![](https://pysdr.org/_images/two-signals.svg)
 
 **5. Convolution in Frequency Property:** The convolution property works in reverse
