@@ -168,6 +168,34 @@ Next let’s use NumPy’s FFT function:
 
 **Also got the required radians and values in terminal**
 
+### FFT shift using python
+
+```S = np.fft.fftshift(np.fft.fft(s))```
+
+**Final Code Example**
+
+```
+import numpy as np
+import matplotlib.pyplot as plt
+
+Fs = 1 # Hz
+N = 100 # number of points to simulate, and our FFT size
+
+t = np.arange(N) # because our sample rate is 1 Hz
+s = np.sin(0.15*2*np.pi*t)
+S = np.fft.fftshift(np.fft.fft(s))
+S_mag = np.abs(S)
+S_phase = np.angle(S)
+f = np.arange(Fs/-2, Fs/2, Fs/N)
+plt.figure(0)
+plt.plot(f, S_mag,'.-')
+plt.figure(1)
+plt.plot(f, S_phase,'.-')
+plt.show()
+```
+Got the Code running and the required plots
+
+<img width="2156" height="1375" alt="image" src="https://github.com/user-attachments/assets/1cd2dcef-388e-4d7a-ac63-203dac3883e6" />
 
 
 
