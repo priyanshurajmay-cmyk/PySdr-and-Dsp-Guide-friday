@@ -142,6 +142,33 @@ There isn’t really such thing as a “negative frequency” when it comes to t
 
 **We tuned the SDR to 100 MHz. So the signal that was at about 97.5 MHz shows up at -2.5 MHz when we represent it digitally, which is technically a negative frequency. In reality it’s just a frequency lower than the center frequency.**
 
+## Order in Time Doesn’t Matter
+Changing the order things happen in the time domain doesn’t change the frequency components in the signal. I.e., doing a single FFT of the following two signals will both have the same two spikes because the signal is just two sine waves at different frequencies. Changing the order the sine waves occur doesn’t change the fact that they are two sine waves at different frequencies. This assumes both sine waves occur within the same time span fed into the FFT.
+
+
+<img width="1008" height="361" alt="image" src="https://github.com/user-attachments/assets/6f8b20f6-8919-4c69-a0aa-c4784c77812e" />
+
+## FFT in Python
+**OBJECTIVE**:let’s actually look at some Python code and use Numpy’s FFT function, np.fft.fft().
+
+<img width="800" height="1219" alt="image" src="https://github.com/user-attachments/assets/b675dfe2-b730-4859-8244-5a905506ecc4" />
+
+<img width="1402" height="507" alt="image" src="https://github.com/user-attachments/assets/ae237866-3edd-43d2-84d0-d19003f96e78" />
+
+Next let’s use NumPy’s FFT function:
+```S = np.fft.fft(s)```
+
+<img width="404" height="178" alt="image" src="https://github.com/user-attachments/assets/ee16a948-6594-489a-af68-6627405fa93f" />
+<img width="701" height="192" alt="image" src="https://github.com/user-attachments/assets/0039f202-6050-42e9-b332-72d81731ed57" />
+
+**Got the array of S in complex numbers, as mentioned in the guide**
+
+
+<img width="1425" height="607" alt="image" src="https://github.com/user-attachments/assets/b3703b86-5c1f-4b77-8e89-cc16f76c9950" />
+
+**Also got the required radians and values in terminal**
+
+
 
 
 
