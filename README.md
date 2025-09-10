@@ -20,6 +20,7 @@ Technologies used in the guide
 *This chapter introduces the frequency domain and covers Fourier series, Fourier transform, Fourier properties, FFT, windowing, and spectrograms, using Python examples.*
 
 ![](https://pysdr.org/_images/time_and_freq_domain_example_signals.png)
+
 The frequency domain shows how a signal is made up of different frequencies. While a signal in the time domain shows how its value changes over time, a frequency domain plot shows which frequencies are present and how strong they are. The process of converting a signal from the time domain to the frequency domain is known as the Fourier Transform. This allows you to visualize the individual sine waves that make up a complex signal.
 
 ## The time domain and frequency domain are two different ways of looking at the same signal:
@@ -39,6 +40,7 @@ In the **frequency domain**, a signal is broken down into its individual sine wa
 ![](https://pysdr.org/_images/summing_sinusoids.svg)
 
 **Here , the combined reference of the time domain and the Frequency domain.**
+
 ![](https://pysdr.org/_images/fourier_series_arbitrary_function.gif)
 
 To understand how we can break down a signal into sine waves, or sinusoids, we need to first review the three attributes of a sine wave:
@@ -98,6 +100,7 @@ Time-frequency properties are fundamental relationships between how a signal beh
 <img width="334" height="84" alt="image" src="https://github.com/user-attachments/assets/26364231-64d3-4489-a9ca-1d8c9f40dee6" />
 
 This property tells us that if we take a signal x(t) and multiply it by a sine wave, then in the frequency domain we get x(f) except shifted by a certain frequency, f0. This shift in frequency may be easier to visualize:
+
 ![](https://pysdr.org/_images/freq-shift.svg)
 
 Frequency shift is integral to DSP because we will want to shift signals up and down in frequency for many reasons. This property tells us how to do that (multiply by a sine wave). Here’s another way to visualize this property:
