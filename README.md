@@ -910,3 +910,39 @@ The guide briefly mentions more complex features like:
 * **Expansion Ports:** Using special ports on the device to connect other hardware.
 
 **In short:** The page is a complete tutorial for the BladeRF SDR. It guides you from setting up the software to writing Python code for both basic receiving and transmitting, and it gives you a glimpse into its more advanced capabilities.
+
+# 8. RTL-SDR in Python
+
+![](https://pysdr.org/_images/rtlsdrs.svg)
+
+### What is an RTL-SDR?
+
+The **RTL-SDR** is the most popular, **ultra-low-cost** Software Defined Radio available. It's the perfect device for beginners because it's so affordable (usually around $30).
+
+
+Interestingly, it was never designed to be an SDR. It started as a cheap **TV tuner dongle** for computers. Clever people discovered that the chip inside (the Realtek RTL2832U) could be put into a special mode to capture a wide range of raw radio signals, and the RTL-SDR was born!
+
+---
+### Key Features & Limitations
+* **Receive-Only:** This is its most important characteristic. The RTL-SDR can **only listen** to radio signals; it **cannot transmit**.
+* **Affordable:** Its very low price makes it extremely accessible.
+* **Limited Bandwidth:** It has a relatively narrow "window" of what it can see at one time (about 2.4 MHz), which is much smaller than more expensive SDRs.
+* **Frequency Drift:** Because it's made with cheap components, the frequency it's tuned to isn't perfectly accurate and can drift. The guide explains how to correct for this with a **PPM setting**.
+
+---
+### Using RTL-SDR with Python
+The webpage is a guide on how to control the RTL-SDR using a special Python library called `pyrtlsdr`.
+
+#### Setup 
+* The first part of the guide is all about **installation**. It shows you how to install the necessary drivers and Python software for different operating systems.
+* For Windows users, it explains how to set things up using WSL (Windows Subsystem for Linux).
+
+#### Controlling the Device 
+* The guide gives you a basic Python script showing you how to:
+    * **Initialize** the SDR.
+    * Set the **center frequency** (where to listen).
+    * Set the **sample rate** (how fast to capture data).
+    * Read the incoming **radio samples**.
+* **Very Important:** It stresses that you must always call `sdr.close()` when you are finished to prevent the device from getting stuck in a bad state.
+
+**In short:** The page is the perfect starting guide for anyone with an RTL-SDR. It explains what the device is, its limitations, and gives you the fundamental Python code needed to start capturing and exploring the radio waves all around you.
