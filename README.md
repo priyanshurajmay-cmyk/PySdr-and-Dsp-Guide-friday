@@ -734,4 +734,97 @@ phase_noise = np.random.randn(len(x_symbols)) * 0.1 # adjust multiplier for "str
 r = x_symbols * np.exp(1j*phase_noise)
 ```
 
+# 5. PlutoSDR in Python
 
+![](https://pysdr.org/_images/pluto.png)
+
+This chapter is about a device called the **PlutoSDR**.
+
+
+It's a low-cost **Software Defined Radio (SDR)**, which is a flexible radio that can be controlled by a computer. The chapter teaches you how to program this device using the **Python** language to:
+
+1.  Install the necessary software.
+2.  Transmit and receive radio signals.
+3.  Turn it into a **spectrum analyzer**—a tool to "see" all the radio waves around you.
+
+## 5.1 Overview of the PlutoSDR
+
+<img width="1188" height="1238" alt="image" src="https://github.com/user-attachments/assets/e6ee6b30-844d-43d2-9658-e6f9f7a6031e" />
+
+
+Here are the key points in simple terms:
+
+* **What it is:** The PlutoSDR is a relatively affordable ($200) piece of hardware that can both **transmit and receive** a huge range of radio signals (from 70 MHz to 6 GHz). It's considered a good upgrade from the cheaper, receive-only RTL-SDRs.
+
+* **Connection and Speed:** It connects to a computer using **USB 2.0**. This connection limits its speed, meaning it can only handle a certain amount of radio data at once, much like how a narrow pipe limits water flow.
+
+* **A Key Limitation:** Although the device technically has two receive channels, they share the same tuner. This means you **cannot listen to two different frequencies** at the same time.
+
+The webpage is a guide for using the **PlutoSDR**, a popular and affordable Software Defined Radio (SDR), with the **Python** programming language.
+
+Here's the main idea broken down:
+
+1.  **Overview**: It starts by introducing the PlutoSDR, explaining that it's a great tool for radio experimentation because it can both **receive and transmit** over a very wide range of frequencies (70 MHz to 6 GHz).
+
+2.  **Setup and Installation**: The guide provides step-by-step instructions on how to set up the necessary software and drivers on your computer so it can communicate with the PlutoSDR.
+
+3.  **Receiving Signals (Rx)**: It shows you Python code examples for how to tune into a specific frequency, set the gain (sensitivity), and capture radio signals from the air.
+
+4.  **Transmitting Signals (Tx)**: It also explains how to generate your own signals in Python and use the PlutoSDR to **transmit** them. It importantly reminds users to be careful and follow local laws when transmitting.
+
+5.  **Turning it into a Spectrum Analyzer**: Finally, it shows how to use other tools (like Maia SDR and IQEngine) to create a real-time **spectrum analyzer**, which lets you visualize all the radio signals in your area.
+
+In short, the page is a complete tutorial that takes you from setting up your PlutoSDR to using it for both receiving and transmitting signals with Python code.
+
+
+## 5.2 Pluto+
+
+### What is the Pluto+?
+
+The **Pluto+** is an **unofficial, upgraded version** of the original PlutoSDR that you can buy from sites like AliExpress. Think of it as a "pro" or "turbo" model made by a third party.
+
+![](https://pysdr.org/_images/pluto_plus.png)
+
+### Key Improvements:
+
+* **Gigabit Ethernet Port:** This is the biggest and most important upgrade. The original PlutoSDR uses a slow USB 2.0 port, which is like a narrow pipe that limits data flow. The Ethernet port is like a **much wider pipe**, allowing you to stream radio data to your computer significantly faster and more reliably.
+
+* **Better Connectors:** It has standard SMA antenna connectors that are easy to use, right out of the box.
+
+* **Other Features:** It also adds a MicroSD card slot and a more stable internal clock for better performance.
+
+### Is it Hard to Use?
+
+No. The best part is that the **Python code used to control the Pluto+ is the same as for the original PlutoSDR**. The only difference is that instead of connecting via USB, you tell your code to connect to the device's IP address over the network.
+
+**In short:** The Pluto+ is a more powerful version of the PlutoSDR, mainly for people who need the higher data speeds that its Ethernet port provides.
+
+## 5.3 AntSDR E200
+
+### What is the AntSDR E200?
+
+The **AntSDR E200** is another low-cost, high-performance Software Defined Radio (SDR), very similar to the Pluto+. Like the Pluto+, it uses a fast **Gigabit Ethernet** connection for data.
+
+![](https://pysdr.org/_images/AntSDR.png)
+
+### What Makes It Special?
+
+The AntSDR has a unique trick: it has a **"dual personality"**. It can act like two completely different types of SDRs:
+
+1.  **Pluto Mode:** It can behave exactly like a **PlutoSDR**. In this mode, all the same Python code and software that work for the Pluto will work for the AntSDR.
+
+2.  **USRP Mode:** With a simple firmware change (or a flip of a switch), it can also behave like a professional **USRP SDR**. This allows it to work with a different set of powerful, industry-standard software tools (called UHD).
+
+**In short:** The AntSDR is an extremely flexible device. It's like having two different SDRs in one box, giving you more choices for the software and projects you want to use it with.
+
+## 5.4 AntSDR E310
+
+The **AntSDR E310** is another model that's very similar to the E200, but with one main trade-off:
+
+* **What you LOSE:** It removes the special "dual personality" feature. The E310 can **only** act like a PlutoSDR (it does not have the USRP mode).
+
+* **What you GAIN:** In return, it gives you **four antenna connectors** on the front, making it easy to use the second receive and second transmit channels. It also adds an extra USB-C port.
+
+**In short:** The E310 is for people who don't need the flexible USRP mode but want a device where it's simple to use all four channels at once.
+
+![](https://pysdr.org/_images/AntSDR_E310.png)
