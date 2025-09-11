@@ -298,3 +298,76 @@ plt.show()
 
 <img width="1586" height="1293" alt="image" src="https://github.com/user-attachments/assets/70d2a63a-7120-4cd8-bb26-fe3c29c4b748" />
 
+# 3. IQ Sampling
+ IQ sampling is the form of sampling that an SDR performs, as well as many digital receivers (and transmitters). It’s a slightly more complex version of regular digital sampling.
+
+ ## 3.1 Sampling Basics
+ The microphone captures sound waves that are converted into electricity, and that electricity in turn is converted into numbers. The ADC acts as the bridge between the analog and digital domains. SDRs are surprisingly similar. Instead of a microphone, however, they utilize an antenna, although they also use ADCs. In both cases, the voltage level is sampled with an ADC. For SDRs, think radio waves in then numbers out.
+
+ ****Whether we are dealing with audio or radio frequencies, we must sample if we want to capture, process, or save a signal digitally.****
+**A more technical way to think of sampling a signal is grabbing values at moments in time and saving them digitally.**
+
+## 3.2 Nyquist Sampling
+
+The **Nyquist Rate** is the minimum rate at which a signal must be sampled to retain all of its information. According to the **Nyquist Sampling Theorem**, this rate is exactly **twice the highest frequency component** in the signal.
+
+In other words, to accurately capture a signal, your sampling frequency ($F_s$) must be greater than or equal to twice the maximum frequency ($f_{max}$) of the signal itself ($F_s \geq 2 \cdot f_{max}$).
+
+If a signal is sampled below this rate, a phenomenon called **aliasing** occurs. Aliasing causes high-frequency components to appear as lower frequencies in the sampled data, leading to an ambiguous and inaccurate reconstruction of the original signal. The Nyquist rate acts as a critical bridge between continuous analog signals and discrete digital signals, ensuring that this distortion is avoided.
+
+## 3.3 Quadrature Sampling
+**Quadrature Sampling** (also known as complex sampling) is the method used by a Software-Defined Radio (SDR) to sample signals.
+
+It's a more advanced form of sampling that represents a signal's amplitude and phase using two components:
+
+* **I (In-phase)**: The cosine component of the signal.
+* **Q (Quadrature)**: The sine component, which is 90 degrees out of phase with the I component.
+
+By adjusting the amplitudes of these two waves, you can create a single signal with any desired amplitude and phase. This approach is more practical for RF circuitry than trying to directly manipulate a single signal's amplitude and phase simultaneously. The I and Q data are then handled using **complex numbers**, which is a key concept in this type of sampling.
+
+# 3.4 Complex Numbers
+The IQ convention is an alternative way to represent magnitude and phase, which leads us to complex numbers and the ability to represent them on a complex plane.
+
+**A complex number is really just two numbers together, a real and an imaginary portion. A complex number also has a magnitude and phase, which makes more sense if you think about it as a vector instead of a point. Magnitude is the length of the line between the origin and the point (i.e., length of the vector), while phase is the angle between the vector and 0 degrees, which we define as the positive real axis:**
+
+![](https://pysdr.org/_images/complex_plane_1.png)
+
+![](https://pysdr.org/_images/complex_plane_2.png)
+
+<img width="1599" height="364" alt="image" src="https://github.com/user-attachments/assets/9c84cd6d-bdeb-420e-9657-d95a7a5e71bd" />
+
+Based on pysdr.org, a **complex number** is a way to represent two pieces of information together: a real part and an imaginary part.
+
+In the context of **Quadrature Sampling**, this is crucial because it allows the two signal components, **I (in-phase)** and **Q (quadrature)**, to be combined into a single number.
+
+* The **I** data represents the **real** portion of the complex number.
+* The **Q** data represents the **imaginary** portion.
+
+When viewed as a vector on a complex plane (I on the x-axis, Q on the y-axis), a complex number has both a **magnitude** and a **phase**, which are the two key characteristics needed to fully describe a sampled signal. This representation makes it easy to analyze and manipulate signals in fields like Digital Signal Processing (DSP) and Software-Defined Radio (SDR).
+
+## 3.5 Complex Numbers in FFTs
+How **complex numbers** are used in the **Fast Fourier Transform (FFT)**.
+
+The FFT takes a series of numbers that represent a signal over time (time-domain samples) and converts them into a representation of the signal's frequencies (frequency-domain).
+
+The output of an FFT is a set of **complex numbers**, and each one contains three crucial pieces of information about a specific frequency in the signal:
+
+1.  **Frequency**: This is determined by the complex number's position or index in the FFT output.
+2.  **Magnitude**: This is the strength or amplitude of that frequency.
+3.  **Phase**: This represents the time shift or delay of that frequency.
+
+The magic of the FFT is that it gives you all the necessary components (magnitude and phase for each frequency) that can be added back together to perfectly reconstruct the original signal, which is where the Nyquist sampling theorem comes into play.
+
+## 3.6 Receiver Side
+How a radio receiver uses **IQ sampling** to process a signal.
+
+### Receiver Operation
+
+1.  A radio signal enters the receiver.
+2.  Inside the receiver, the signal is split into two copies. One is the **I (in-phase)** component, and the other is the **Q (quadrature)** component, which is shifted by 90 degrees.
+3.  The receiver then takes a sample from both the I and Q signals at the same time.
+4.  These two samples (one I value and one Q value) are combined to create a single **complex number** in the form of $I + jQ$.
+
+This process happens very quickly at a specific **sample rate**. The end result is that a continuous radio signal is transformed into a stream of complex numbers. This stream is what the computer-based radio (SDR) then processes to analyze the original signal.
+
+![](https://pysdr.org/_images/IQ_diagram_rx.png)
