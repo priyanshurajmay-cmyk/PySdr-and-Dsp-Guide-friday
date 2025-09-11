@@ -1045,6 +1045,101 @@ If you tried to plot these on a normal (linear) graph, the smaller values would 
 
 Instead of a normal scale, dB uses a **logarithmic scale**. Think of it like the Richter scale for earthquakes. The difference between 5 and 6 on the Richter scale is much bigger than the difference between 1 and 2.
 
-This scale **compresses** the range of numbers so that massive differences become manageable. It allows you to easily see, plot, and calculate both huge and tiny values together. 🔬🔭
+This scale **compresses** the range of numbers so that massive differences become manageable. It allows you to easily see, plot, and calculate both huge and tiny values together.
 
 In short, **dB turns complicated multiplication problems with huge numbers into simple addition problems with small numbers.**
+
+
+# 10. Noise and dB
+
+**Noise** is an unwanted random signal that interferes with the desired signal. In wireless communications, it is often modeled as **Additive White Gaussian Noise (AWGN)**, which is a type of noise that is present at all frequencies with equal power. We also work with **complex noise**, which has both a real and imaginary part, representing the noise in the in-phase (I) and quadrature (Q) components of a signal.
+
+**Decibels (dB)** are a logarithmic unit used to express the ratio of two power levels. It's a convenient way to represent very large or very small numbers. In communications, we often use dB to talk about signal strength, noise level, and the **Signal-to-Noise Ratio (SNR)**, which is the ratio of the power of the desired signal to the power of the noise. A higher SNR means a better quality signal.
+
+---
+# 11. Filters
+
+In digital signal processing (DSP), **filters** are used to remove or enhance certain frequencies in a signal. The four basic types of filters are:
+* **Low-pass:** Allows low frequencies to pass through and blocks high frequencies.
+* **High-pass:** Allows high frequencies to pass through and blocks low frequencies.
+* **Band-pass:** Allows a specific range of frequencies to pass through.
+* **Band-stop:** Blocks a specific range of frequencies.
+
+Filters are essential for separating signals, removing excess noise, and restoring distorted signals.
+
+---
+# 12. Link Budgets
+
+A **link budget** is a calculation of all the gains and losses in a communication system, from the transmitter to the receiver. It helps to ensure that the received signal will be strong enough to be successfully decoded. The link budget takes into account factors such as:
+* **Transmit power:** The power of the signal sent by the transmitter.
+* **Antenna gains:** The ability of the antennas to focus the signal in a particular direction.
+* **Path loss:** The weakening of the signal as it travels through the air.
+* **Noise:** The unwanted signals that interfere with the desired signal.
+
+---
+# 13. Channel Coding
+
+**Channel coding** is the process of adding redundant information to a signal to detect and correct errors that may occur during transmission. This is important because real-world communication channels are noisy and can introduce errors into the signal.
+
+There are two main types of channel codes:
+* **Block codes:** Work on blocks of data of a fixed length.
+* **Convolutional codes:** Work on a stream of data of arbitrary length.
+
+The **code-rate** is the ratio of the number of information bits to the total number of bits transmitted. A lower code-rate means more redundancy and better error correction, but also lower data throughput.
+
+---
+# 14. IQ Files and SigMF
+
+**IQ files** are binary files that store the in-phase (I) and quadrature (Q) components of a complex baseband signal. This is a common way to store and share raw radio signals for later analysis.
+
+**SigMF (Signal Metadata Format)** is a standard for describing the metadata associated with IQ files, such as the center frequency, sample rate, and data format. This makes it easier to share and process IQ data from different sources.
+
+---
+# 15. Multipath Fading
+
+**Multipath fading** is a phenomenon that occurs when a radio signal travels from a transmitter to a receiver via multiple paths. This can happen when the signal is reflected off of buildings, trees, or other objects. The different paths cause the signal to arrive at the receiver at slightly different times, which can lead to constructive or destructive interference. This can cause the signal to fade in and out, which can make it difficult to decode.
+
+---
+# 16. Pulse Shaping
+
+**Pulse shaping** is a technique used to shape the waveform of a transmitted signal to reduce its bandwidth and prevent interference with adjacent channels. A common pulse-shaping filter is the **raised-cosine filter**, which has a smooth, rounded shape that minimizes inter-symbol interference (ISI). ISI occurs when the energy from one symbol spills over into the next, which can cause errors in the received signal.
+
+---
+# 17. Synchronization
+
+**Synchronization** is the process of aligning the receiver's clock and frequency with the transmitter's. This is essential for correctly decoding the received signal. There are three main types of synchronization:
+* **Timing synchronization:** Aligning the receiver's sampling clock with the transmitter's symbol clock.
+* **Frequency synchronization:** Correcting for any frequency offset between the transmitter and receiver.
+* **Phase synchronization:** Correcting for any phase offset between the transmitter and receiver.
+
+---
+# 18. End-to-End Example
+
+The "End-to-End Example" on pysdr.org is a practical demonstration of how to build a complete software-defined radio (SDR) system. It shows how to receive a signal, demodulate it, and decode the information it contains. This example is a great way to learn how all of the different concepts in SDR work together.
+
+---
+# 19. Beamforming & DOA
+
+**Beamforming** is a technique used to focus a radio signal in a particular direction. This is done by using an array of antennas and adjusting the phase of the signal at each antenna. Beamforming can be used to improve the signal-to-noise ratio (SNR) of a received signal or to reduce interference from other signals.
+
+**Direction of Arrival (DOA)** is the process of estimating the direction from which a radio signal is coming. This can be done by using an array of antennas and measuring the time difference of arrival (TDOA) of the signal at each antenna.
+
+---
+# 20. 2D Beamforming
+
+**2D beamforming** is an extension of beamforming to two dimensions. This is done by using a 2D array of antennas, such as a rectangular or circular array. 2D beamforming can be used to create a beam that is focused in both azimuth and elevation.
+
+---
+# 21. Hands-on with Phaser
+
+The "Hands-on with Phaser" chapter on pysdr.org is a practical guide to using the Analog Devices Phaser, which is a phased-array antenna board. It shows how to set up the Phaser, calibrate it, and use it to perform beamforming and other experiments.
+
+---
+# 22. Cyclostationary Processing
+
+**Cyclostationary processing** is a set of techniques for analyzing signals that have statistical properties that vary periodically with time. This is a common property of many man-made signals, such as communication signals. Cyclostationary processing can be used to detect and classify signals, even when they are buried in noise.
+
+---
+# 23. Real-Time GUIs with PyQt
+
+**PyQt** is a Python binding for the Qt GUI framework. It can be used to create real-time graphical user interfaces (GUIs) for SDR applications. This allows you to visualize the received signal in real-time and control the SDR parameters from a graphical interface.
