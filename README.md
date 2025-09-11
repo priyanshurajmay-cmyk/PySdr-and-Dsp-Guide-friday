@@ -504,3 +504,234 @@ plt.ylabel("Magnitude [dB]")
 plt.grid(True)
 plt.show()
 ```
+
+# 4. Digital Modulation
+Digital modulation is a technique used to transmit digital data (like 1s and 0s) over a wireless signal. Think of it as a way to convert digital information into a physical signal that can travel through the air.
+
+The main goal is to be as efficient as possible. This means "squeezing" the most amount of data into the least amount of radio frequency space (or spectrum). The image mentions a trade-off: sending data faster requires more spectrum, so other methods are used to be more efficient.
+
+The chapter you've shared will cover different ways to do this, such as:
+
+* **PSK (Phase-Shift Keying):** Changes the phase of the signal.
+* **ASK (Amplitude-Shift Keying):** Changes the amplitude (or strength) of the signal.
+* **FSK (Frequency-Shift Keying):** Changes the frequency of the signal.
+* **QAM (Quadrature Amplitude Modulation):** Combines both phase and amplitude changes for even greater efficiency.
+
+Ultimately, it's all about finding clever ways to encode digital data onto a wireless signal to send it from one place to another.
+## 4.1 Symbols
+**symbols** in the context of digital communication:
+
+A **symbol** is a unit of a signal that carries one or more bits of information (1s and 0s).
+
+* **Simple communication:** To send "1", you send a high voltage. To send "0", you send a low voltage. In this case, each symbol (the high or low voltage) represents just one bit.
+
+* **More advanced communication:** To send data faster, you can create more complex symbols. For example, instead of just high or low, you can use four different voltage levels.
+    * A very high voltage can represent "00".
+    * A medium-high voltage can represent "01".
+    * A medium-low voltage can represent "10".
+    * A very low voltage can represent "11".
+![](https://pysdr.org/_images/symbols.png)
+<img width="977" height="445" alt="image" src="https://github.com/user-attachments/assets/857c42b9-d943-4755-a084-244555974176" />
+
+
+By using these four different levels, each symbol now represents **two bits** of information. This allows you to send data much more efficiently and at a faster rate, as you're sending more information with each signal change.
+## 4.2 Wireless Symbols
+
+<img width="1278" height="417" alt="image" src="https://github.com/user-attachments/assets/4e37c401-afcb-47c7-90ad-ddb93d9a99ba" />
+
+Why the wired Ethernet signal can't be used for wireless communication.
+
+You can't use the same signal from an Ethernet cable for wireless transmission for two main reasons:
+
+1.  **Antenna Size:** The Ethernet signal has very low-frequency components. To transmit these low frequencies wirelessly, you would need an enormous antenna, often miles long. This is simply not practical.
+2.  **Wasted Space:** The square-wave signal from Ethernet has sharp, sudden changes. When you convert this signal into its frequency components, it turns out it uses up a huge amount of radio spectrum (bandwidth) for the amount of data it carries. This is very inefficient and would interfere with other signals.
+
+Instead, wireless communication uses a **carrier wave**, which is a high-frequency, continuous signal (like a sine wave). This carrier wave is what we "modulate" to carry our data.
+
+We can change three properties of this carrier wave to encode our digital information (1s and 0s):
+
+* **Amplitude:** Changing the height or strength of the wave.
+* **Phase:** Shifting the start point of the wave.
+* **Frequency:** Changing how close the waves are to each other.
+
+By doing this, we can efficiently send data wirelessly without needing giant antennas or wasting a lot of radio spectrum.
+
+## 4.3 Amplitude Shift Keying (ASK)
+
+**What is ASK?**
+Amplitude Shift Keying (ASK) is a simple way to send digital data (1s and 0s) wirelessly. It works by changing the **amplitude** (the height or strength) of a carrier wave.
+
+**How it Works (2-Level ASK):**
+Imagine you have a continuous sine wave.
+* To send a digital "1", you make the wave have a **high amplitude** (it gets taller).
+* To send a digital "0", you make the wave have a **low amplitude** (it gets shorter, or even turns off).
+
+**More Advanced ASK:**
+You can use more than just two levels. For example, in **4-ASK**, you would use four different amplitude levels to represent different combinations of two bits (like 00, 01, 10, and 11). This allows you to send more data at the same time, making the communication more efficient.
+
+In short, ASK is a method of digital modulation that encodes data by varying the power or strength of the signal.
+
+## 4.4 Phase Shift Keying (PSK)
+
+**Phase Shift Keying (PSK)** is a method for encoding digital data (like 1s and 0s) onto a carrier wave, like a radio wave. It works by changing the **phase** (the starting point) of the wave.
+
+In short, a **phase flip means the bit changed**, and **no phase flip means the bit stayed the same**. This is how a receiver can decode the original 1s and 0s from the wave.
+
+## 4.5 IQ Plots/Constellations
+
+
+### What are IQ Plots (Constellation Diagrams)? 🗺️
+
+Think of an **IQ plot**, also called a **constellation diagram**, as a map for a signal. It helps us visualize two key properties at once:
+
+* **Amplitude (Signal Strength):** How far a point is from the center of the map.
+* **Phase (Signal Timing):** The angle or direction of the point from the center.
+
+Each point on this map is called a "**symbol**," and each symbol represents a piece of digital data (one or more bits). The entire pattern of possible points is called the **constellation**.
+
+
+***
+
+### PSK: Changing the Phase (Angle)
+
+In **Phase Shift Keying (PSK)**, we send data by changing the signal's **phase**. This means the amplitude stays the same.
+
+* On the map, all the points are the same distance from the center, forming a **circle**.
+* **BPSK (Binary PSK):** Uses two phases (two points) to send 1 bit per symbol.
+* **QPSK (Quadrature PSK):** Uses four phases (four points) to send 2 bits per symbol. This is more efficient than BPSK.
+* **8PSK:** Uses eight phases (eight points) to send 3 bits per symbol.
+
+The more points you have on the circle, the more bits you can send at the same time.
+
+
+***
+
+### ASK: Changing the Amplitude (Distance)
+
+In **Amplitude Shift Keying (ASK)**, we send data by changing the signal's **amplitude**, while the phase stays the same.
+
+* On the map, this means all the points lie on a **straight line**, at different distances from the center.
+* An interesting fact is that **BPSK** and **2-ASK** look identical on the constellation diagram. A 180° phase flip (BPSK) is the same as multiplying the amplitude by -1 (2-ASK).
+
+![](https://pysdr.org/_images/bpsk_iq.png)
+![](https://pysdr.org/_images/bpsk3.png)
+![](https://pysdr.org/_images/psk_set.png)
+![](https://pysdr.org/_images/ask_set.png)
+
+## 4.6 Quadrature Amplitude Modulation (QAM)
+
+![](https://pysdr.org/_images/64qam.png)
+
+### Why IQ Plots are Better than Waveforms
+
+The first image makes a simple point: for advanced ways of sending data, looking at the signal as a wave over time (the "time domain") is very confusing.
+
+![](https://pysdr.org/_images/qam_time_domain.png)
+
+As you can see in the wave above, it's almost impossible to tell where one symbol ends and another begins, or what data is being sent. It's just a complex jumble.
+
+That's why we use **IQ plots (constellation diagrams)**. They provide a clear, simple "map" of the data, making it much easier to understand.
+
+***
+
+### Quadrature Amplitude Modulation (QAM) 📡
+
+![](https://pysdr.org/_images/qpsk_list.png)
+
+QAM is a powerful technique that combines the two methods we've seen before:
+* **ASK** (changing **amplitude**/strength)
+* **PSK** (changing **phase**/angle)
+
+By changing **both the amplitude and the phase** at the same time, QAM can pack a lot more information into the signal.
+
+On the IQ plot, this doesn't create a line (like ASK) or a circle (like PSK). Instead, it creates a **grid** of points. Each point in the grid is a unique symbol that represents a specific combination of bits.
+
+
+The number in front of QAM tells you how many points are in the grid.
+* **16-QAM** has a 4x4 grid (16 points) and sends 4 bits per symbol.
+* **64-QAM** has an 8x8 grid (64 points) and sends 6 bits per symbol.
+* **256-QAM** has a 16x16 grid (256 points) and sends 8 bits per symbol.
+
+![](https://pysdr.org/_images/qam.png)
+
+**The bigger the grid, the more data you can send at once.** This is why modern technologies like Wi-Fi, 4G, and 5G use high-level QAM to achieve very fast speeds.
+
+## 4.7 What is Frequency Shift Keying (FSK)?
+
+**Frequency Shift Keying (FSK)** is a simple way to encode digital data by changing the **frequency** of a carrier wave.
+
+Think of it like whistling different musical notes to send a message. Each distinct note represents a different piece of information.
+
+---
+
+### How it Works
+
+The images show two ways to look at FSK:
+
+<img width="734" height="398" alt="image" src="https://github.com/user-attachments/assets/d5f6c1c5-782a-41b1-98c9-db10d011a2a9" />
+
+
+**1. In the Time Domain (The Wave Itself)**
+
+This view shows how the wave changes over time. For the simplest FSK (called 2-FSK or binary FSK), you use two frequencies:
+* One frequency ($f_0$) represents a binary **0**.
+* A different, higher frequency ($f_1$) represents a binary **1**.
+
+
+As you can see, when the input bit is '0', the wave is spread out (lower frequency). When the input bit is '1', the wave is compressed (higher frequency).
+
+**2. In the Frequency Domain (The "Notes" Used)**
+
+This view shows which frequencies are being used. The example shows **4-FSK**, which uses four distinct frequencies to send data.
+* Because there are four possible "notes" or frequencies, each one can represent two bits (e.g., Note 1 = `00`, Note 2 = `01`, Note 3 = `10`, Note 4 = `11`).
+
+
+The plot shows four distinct peaks, with each peak representing one of the four frequencies used to transmit the data. The receiver just needs to identify which of these four frequencies is being sent at any moment to decode the information.
+
+A simple analogy is its relationship to **FM radio**. FM radio changes its frequency continuously with the music (analog), while FSK jumps between a few specific frequencies to represent digital data.
+
+![](https://pysdr.org/_images/am_fm_animation.gif)
+
+## 4.8 Differential Coding
+**Differential Coding** is a method where you encode information based on the **difference between consecutive bits**, rather than their absolute values.
+
+Essentially, you transmit a signal that means "change" or "stay the same" relative to the previous bit. This clever trick helps the receiver decode the data correctly even if the entire signal gets phase-inverted (flipped upside down) during transmission, because the pattern of changes remains intact.
+
+## 4.9 Python Example
+let’s generate QPSK at baseband and plot the constellation.
+```
+import numpy as np
+import matplotlib.pyplot as plt
+
+num_symbols = 1000
+
+x_int = np.random.randint(0, 4, num_symbols) # 0 to 3
+x_degrees = x_int*360/4.0 + 45 # 45, 135, 225, 315 degrees
+x_radians = x_degrees*np.pi/180.0 # sin() and cos() takes in radians
+x_symbols = np.cos(x_radians) + 1j*np.sin(x_radians) # this produces our QPSK complex symbols
+plt.plot(np.real(x_symbols), np.imag(x_symbols), '.')
+plt.grid(True)
+plt.show()
+```
+<img width="1236" height="1251" alt="image" src="https://github.com/user-attachments/assets/b5aa11f0-8e7e-4caf-abbf-d01c007c9877" />
+
+Observe how all the symbols we generated overlap. There’s no noise so the symbols all have the same value. Let’s add some noise:
+
+```
+n = (np.random.randn(num_symbols) + 1j*np.random.randn(num_symbols))/np.sqrt(2) # AWGN with unity power
+noise_power = 0.01
+r = x_symbols + n * np.sqrt(noise_power)
+plt.plot(np.real(r), np.imag(r), '.')
+plt.grid(True)
+plt.show()
+```
+<img width="1554" height="1221" alt="image" src="https://github.com/user-attachments/assets/beb51a1f-70e8-42bd-9879-6c37bb48e49b" />
+
+ which could result from phase jitter within the local oscillator (LO), replace the r with:
+
+ ```
+phase_noise = np.random.randn(len(x_symbols)) * 0.1 # adjust multiplier for "strength" of phase noise
+r = x_symbols * np.exp(1j*phase_noise)
+```
+
+
