@@ -946,3 +946,34 @@ The webpage is a guide on how to control the RTL-SDR using a special Python libr
 * **Very Important:** It stresses that you must always call `sdr.close()` when you are finished to prevent the device from getting stuck in a bad state.
 
 **In short:** The page is the perfect starting guide for anyone with an RTL-SDR. It explains what the device is, its limitations, and gives you the fundamental Python code needed to start capturing and exploring the radio waves all around you.
+
+# 9. HackRF One in Python
+
+![](https://pysdr.org/_images/hackrf1.jpeg)
+
+### What is a HackRF?
+
+The **HackRF One** is a very popular and versatile Software Defined Radio. It's known as the "jack-of-all-trades" in the SDR world because it can do a little bit of everything. It's a great middle-ground option that is more powerful than an RTL-SDR but generally more affordable than a USRP.
+
+
+---
+### Key Features
+* **Wide Frequency Range:** It can operate on an enormous range of frequencies, from **1 MHz all the way to 6 GHz**. This means it can listen to everything from AM radio to modern Wi-Fi signals.
+* **Transmit and Receive:** Unlike the RTL-SDR, the HackRF can both **listen (receive)** and **talk (transmit)**. However, it can only do one at a time (this is called "half-duplex").
+* **Decent Bandwidth:** It can see a "window" of the radio spectrum up to **20 MHz** wide, which is much better than an RTL-SDR and allows you to capture signals like FM radio or TV broadcasts all at once.
+* **USB Powered:** It connects to the computer and gets its power from a standard USB 2.0 port.
+
+---
+### Using HackRF in Python
+The webpage is a guide on how to control the HackRF using its special Python library.
+
+#### Setup 
+* The first part of the guide is all about **installation**. It shows you how to install the necessary drivers and Python software on an Ubuntu (Linux) system.
+* It also introduces you to some useful command-line tools for testing and getting info from your HackRF.
+
+#### Controlling the Device 
+* The guide explains the different **gain settings** for receiving and transmitting, which help you get the best signal quality.
+* It provides a detailed **Python code example** for receiving signals. A key part of this is the "callback function," which is a special piece of code that runs automatically every time a new chunk of radio data arrives from the HackRF.
+* The example shows you how to process this data and visualize it as a **spectrogram**.
+
+**In short:** The page is a complete tutorial for the HackRF One. It explains what makes the device so versatile and provides the essential knowledge and Python code to start receiving and visualizing a wide range of radio signals.
