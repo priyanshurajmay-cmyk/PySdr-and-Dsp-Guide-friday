@@ -977,3 +977,51 @@ The webpage is a guide on how to control the HackRF using its special Python lib
 * The example shows you how to process this data and visualize it as a **spectrogram**.
 
 **In short:** The page is a complete tutorial for the HackRF One. It explains what makes the device so versatile and provides the essential knowledge and Python code to start receiving and visualizing a wide range of radio signals.
+
+# 10. Noise and dB
+
+This chapter is about noise in wireless systems. It explains how to model and handle noise, covering topics like AWGN, complex noise, and SNR/SINR. It also introduces decibels (dB), a common measurement used in wireless communications and Software-Defined Radio (SDR).
+
+***
+
+**Even Simpler (in bullet points):**
+
+This chapter covers:
+* **Noise:** What it is and how to handle it in wireless systems.
+* **Key Concepts:** Things like AWGN, SNR, and SINR.
+* **Decibels (dB):** What they are and why they are so important in wireless technology.
+
+## 10.1 Gaussian Noise
+
+### What is Gaussian Noise?
+
+![](https://pysdr.org/_images/noise.png)
+
+Think of Gaussian noise as the most common type of random "static" or interference you find in electronics and wireless signals. It's the unwanted fuzz that can mess up a clear signal. 
+It's called **"Gaussian"** because if you were to plot the probability of any given noise value, you would get the famous "Normal" distribution, also known as a **bell curve**.
+
+
+This means that small fluctuations near the average are very common, while large, random spikes are very rare.
+
+***
+
+![](https://pysdr.org/_images/central_limit_theorem.svg)
+
+### Key Properties
+
+Gaussian noise has two main settings or parameters:
+
+1.  **Mean (The Average)**
+    * For noise, the mean is considered **zero**. As you can see in the graph, the random values are centered around the zero line. Even if there's a DC offset or "bias," we can easily measure and subtract it, bringing the average back to zero.
+
+2.  **Variance ($\sigma^2$) (The Power)**
+    * Variance tells you **how strong the noise is**. It's a measure of how spread out the random values are from the zero average.
+        * **High Variance**: The noise is "louder" with bigger swings. The bell curve is short and wide.
+        * **Low Variance**: The noise is "quieter" with smaller swings. The bell curve is tall and skinny.
+    * Because it measures the strength of the fluctuations, **variance defines the noise power**.
+
+***
+
+### Why is it so common?
+
+The **Central Limit Theorem** is the reason. It states that when you add up many different independent random processes, their combined effect will tend to follow a Gaussian distribution. In electronics, noise comes from countless tiny sources (like the thermal vibration of atoms), and their cumulative effect is Gaussian noise.
