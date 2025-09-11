@@ -869,3 +869,44 @@ The guide also touches on some of the more advanced things that make USRPs so po
 * **GPIO Pins:** How to use the USRP's General-Purpose Input/Output pins to control other electronic hardware.
 
 **In short:** The page is a beginner's guide to controlling powerful USRP hardware using Python. It covers everything from setup to the basic code for receiving and transmitting signals, and it briefly introduces some of the advanced features that make USRPs a professional tool.
+
+# 7. BladeRF in Python
+
+### What is a BladeRF?
+
+The **BladeRF** is another popular Software Defined Radio (SDR). It's a powerful device that connects to your computer using a fast **USB 3.0** port. This fast connection allows it to handle a lot of radio data, similar to the Pluto+ or AntSDR.
+![](https://pysdr.org/_images/bladeRF_micro.png)
+
+---
+
+### Key Features
+* **Fast Connection:** Uses USB 3.0, which is much faster than the USB 2.0 on the original PlutoSDR.
+* **Wide Frequency Range:** Can listen to and transmit on a huge range of frequencies (47 MHz to 6 GHz).
+* **Multiple Channels:** It has 2 receive and 2 transmit channels (often called 2x2 MIMO), which lets you do more advanced things.
+
+---
+
+### Using BladeRF in Python
+The webpage is a guide on how to control the BladeRF using its special Python library.
+
+#### Setup 
+* The first part of the guide is all about **installation**. It shows you how to install the necessary drivers and Python software on different operating systems (like Ubuntu, Windows, and macOS).
+
+#### Receiving Signals (Rx) 
+* It gives you the Python code to **configure the radio**, telling it which frequency to tune to, what sample rate to use, and how to set the gain (sensitivity).
+* It shows you how to **start receiving** a stream of data and how to handle it in your code.
+* A practical example is included: creating a **spectrogram** to visualize the radio signals you are receiving.
+
+#### Transmitting Signals (Tx) 
+* It also shows you how to generate a signal in Python and **transmit** it using the BladeRF.
+* The guide provides code for a basic example: transmitting a simple, single-frequency tone.
+
+---
+
+### Advanced Topics
+The guide briefly mentions more complex features like:
+* **Calibration:** How to tune the device for the best performance.
+* **Clocking:** How to sync the BladeRF's internal clock.
+* **Expansion Ports:** Using special ports on the device to connect other hardware.
+
+**In short:** The page is a complete tutorial for the BladeRF SDR. It guides you from setting up the software to writing Python code for both basic receiving and transmitting, and it gives you a glimpse into its more advanced capabilities.
