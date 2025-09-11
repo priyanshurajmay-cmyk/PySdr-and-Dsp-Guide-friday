@@ -438,3 +438,69 @@ For example, to view a signal at 100 MHz, you might tune your SDR to 95 MHz inst
 
 ![](https://pysdr.org/_images/dc_spike.png)
 ![](https://pysdr.org/_images/offtuning.png)
+
+## 3.10 Sampling Using our SDR
+
+For SDR-specific information about performing sampling, see one of the following chapters:
+
+1. PlutoSDR in Python Chapter
+2. USRP in Python Chapter
+
+## 3.11 Calculating Average Power
+Based on the image, calculating the average power of a signal is about finding its average "strength."
+
+Here are two easy ways to do it:
+
+### The Standard Way
+For each sample of your signal, you take its strength (called **magnitude**), square that value, and then find the **average** of all the squared values. This gives you the average power.
+
+### The Easy Shortcut
+If your signal's average value is close to zero, which is common in SDR, there's a simpler method. You can just calculate the **variance** of the signal samples. The variance, which measures how much the signal's values are spread out, is a good approximation of the average power in this specific situation.
+
+**In Python, calculating the average power will look like:** ```avg_pwr = np.mean(np.abs(x)**2)```
+
+## 3.12 Calculating Power Spectral Density
+
+How to calculate **Power Spectral Density (PSD)**, which is a way to visualize the different frequencies in a signal and their power or strength.
+
+The process is like taking a complex sound and breaking it down to see how loud each individual note is.
+
+Here are the key steps:
+
+1.  **Transform:** You start with your signal and perform a **Fast Fourier Transform (FFT)**, which converts the signal's data from a time-based view into a frequency-based view.
+2.  **Calculate Power:** You then calculate the power of each frequency component from the FFT's output.
+3.  **Scale and View:** The power values are then scaled and converted to decibels (dB) to make them easier to see on a plot.
+4.  **Shift:** Finally, the plot is shifted so that the center frequency (0 Hz) is in the middle, making it easy to see both positive and negative frequencies.
+
+The final result is a graph that visually shows you which frequencies in your signal have the most energy.
+
+<img width="1624" height="1190" alt="image" src="https://github.com/user-attachments/assets/353ba0a4-7ac0-401a-9cf5-3086b6ad482d" />
+
+**The code example from the guide:**
+```
+import numpy as np
+import matplotlib.pyplot as plt
+
+Fs = 300 # sample rate
+Ts = 1/Fs # sample period
+N = 2048 # number of samples to simulate
+
+t = Ts*np.arange(N)
+x = np.exp(1j*2*np.pi*50*t) # simulates sinusoid at 50 Hz
+
+n = (np.random.randn(N) + 1j*np.random.randn(N))/np.sqrt(2) # complex noise with unity power
+noise_power = 2
+r = x + n * np.sqrt(noise_power)
+
+PSD = np.abs(np.fft.fft(r))**2 / (N*Fs)
+PSD_log = 10.0*np.log10(PSD)
+PSD_shifted = np.fft.fftshift(PSD_log)
+
+f = np.arange(Fs/-2.0, Fs/2.0, Fs/N) # start, stop, step
+
+plt.plot(f, PSD_shifted)
+plt.xlabel("Frequency [Hz]")
+plt.ylabel("Magnitude [dB]")
+plt.grid(True)
+plt.show()
+```
