@@ -408,3 +408,18 @@ This is a modern approach used in many software-defined radios. It uses a mixer 
 This is a classic architecture used in older radios (like those in cars). Instead of converting the signal directly to 0 Hz, it uses a mixer to shift the signal down to a fixed **intermediate frequency (IF)**. This makes the signal easier to filter and process before it is finally converted to a digital signal by an ADC or an analog demodulator.
 
 ![](https://pysdr.org/_images/receiver_arch_diagram.svg)
+
+## 3.8 Baseband and Bandpass Signals
+The difference between **baseband** and **bandpass** signals, which are fundamental concepts in radio communication.
+
+### Baseband Signals
+
+A **baseband signal** is a signal centered around 0 Hz. It represents the raw data, like an audio signal or the output of a downconverted radio signal. Because it's at a low frequency, it requires a lower sample rate to capture, making it efficient to work with on a computer.
+
+### Bandpass Signals
+
+A **bandpass signal** is a signal that exists at some higher radio frequency (RF), away from 0 Hz. This is the type of signal that is actually transmitted through the air (e.g., Wi-Fi, FM radio). Bandpass signals are always **real** and do not contain imaginary components, as you cannot transmit imaginary data.
+
+In summary, we work with baseband signals because they are efficient to process, but the signals we actually transmit and receive are bandpass signals. Downconversion is the process of converting a high-frequency bandpass signal into a low-frequency baseband signal for digital processing.
+
+![](https://pysdr.org/_images/baseband_bandpass.png)
