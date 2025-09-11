@@ -1025,3 +1025,26 @@ Gaussian noise has two main settings or parameters:
 ### Why is it so common?
 
 The **Central Limit Theorem** is the reason. It states that when you add up many different independent random processes, their combined effect will tend to follow a Gaussian distribution. In electronics, noise comes from countless tiny sources (like the thermal vibration of atoms), and their cumulative effect is Gaussian noise.
+
+## Decibels (dB)
+
+## Why We Use Decibels (dB)
+
+Decibels (dB) are a way to make it easier to handle and compare numbers that are **vastly different in size**.
+
+### The Problem
+
+In science and engineering, you often need to deal with a huge range of values at the same time. For example:
+* A strong radio signal might be millions of times more powerful than the background noise.
+* A chainsaw is thousands of times louder than a garbage disposal, which is itself thousands of times louder than a quiet room.
+
+If you tried to plot these on a normal (linear) graph, the smaller values would be so tiny they would be completely invisible. Writing out all the zeros for these big and small numbers is also clumsy.
+
+
+### The Solution: A Logarithmic Scale
+
+Instead of a normal scale, dB uses a **logarithmic scale**. Think of it like the Richter scale for earthquakes. The difference between 5 and 6 on the Richter scale is much bigger than the difference between 1 and 2.
+
+This scale **compresses** the range of numbers so that massive differences become manageable. It allows you to easily see, plot, and calculate both huge and tiny values together. 🔬🔭
+
+In short, **dB turns complicated multiplication problems with huge numbers into simple addition problems with small numbers.**
