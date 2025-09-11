@@ -423,3 +423,18 @@ A **bandpass signal** is a signal that exists at some higher radio frequency (RF
 In summary, we work with baseband signals because they are efficient to process, but the signals we actually transmit and receive are bandpass signals. Downconversion is the process of converting a high-frequency bandpass signal into a low-frequency baseband signal for digital processing.
 
 ![](https://pysdr.org/_images/baseband_bandpass.png)
+
+## 3.9 DC Spike and Offset Tuning
+
+### DC Spikes
+
+A **DC spike** is a large, unwanted spike of energy that appears in the very center of the spectrum when you use a Software-Defined Radio (SDR). It is a common problem caused by a small imperfection in the SDR hardware's oscillator, known as **LO leakage**. The spike is simply a hardware artifact and is usually not a real signal you are trying to receive. It can hide actual signals that are close to the center frequency.
+
+### Offset Tuning
+
+**Offset tuning** is a clever trick to avoid the DC spike. Instead of tuning the SDR directly to the frequency you want to analyze, you intentionally tune it to a nearby, "offset" frequency.
+
+For example, to view a signal at 100 MHz, you might tune your SDR to 95 MHz instead. This moves the signal you want to see away from the center (0 Hz) where the DC spike would appear. The SDR then has to digitally shift the signal back to the correct frequency for you, which solves the problem and gives you a clean view of your desired signal.
+
+![](https://pysdr.org/_images/dc_spike.png)
+![](https://pysdr.org/_images/offtuning.png)
