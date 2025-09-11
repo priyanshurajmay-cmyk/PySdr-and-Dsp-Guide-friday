@@ -371,3 +371,40 @@ How a radio receiver uses **IQ sampling** to process a signal.
 This process happens very quickly at a specific **sample rate**. The end result is that a continuous radio signal is transformed into a stream of complex numbers. This stream is what the computer-based radio (SDR) then processes to analyze the original signal.
 
 ![](https://pysdr.org/_images/IQ_diagram_rx.png)
+
+## 3.6 Carrier and Downconversion
+Explain two key concepts in radio communication: **Carrier Waves** and **Downconversion**.
+
+### Carrier and Modulation
+
+A **carrier wave** is a high-frequency sine wave (like an FM radio or Wi-Fi signal) used to carry information. Instead of transmitting data directly, we use the carrier as a vehicle. We add our data to the carrier by changing its properties, a process called **modulation**. For example, in an FM radio, we change the carrier's frequency to transmit sound. The information received by an SDR is stored as **I** and **Q** values, which represent the modulated carrier.
+
+---
+
+### Downconversion
+
+**Downconversion** is the process of lowering the carrier wave's high frequency to a much lower, more manageable frequency (ideally 0 Hz or DC). This is done because it is extremely difficult and expensive to directly sample high-frequency signals, like a 2.4 GHz Wi-Fi signal, at the required sample rate.
+
+To downconvert, the SDR acts like a **mixer**, multiplying the incoming high-frequency signal by a locally generated sine wave. This multiplication has the effect of shifting the signal's frequency down to a baseband, or a lower range.
+
+
+By shifting the signal to a much lower frequency, an SDR can use a slower, cheaper Analog-to-Digital Converter (ADC) to sample the signal, making it practical to process radio signals on a computer.
+
+## 3.7 Receiver Architectures
+
+The three main radio receiver architectures.
+
+### Direct Sampling (or Direct RF)
+This is the simplest but most demanding method. The radio signal is amplified and then fed directly into an **extremely expensive ADC**. This ADC must be fast enough to sample the high-frequency radio signal as-is, without any downconversion.
+
+***
+
+### Direct Conversion (or Zero IF)
+This is a modern approach used in many software-defined radios. It uses a mixer to immediately convert the high-frequency radio signal down to a very low frequency (0 Hz), creating the **I** and **Q** components. This process makes it possible to use slower, less expensive ADCs to capture the signal.
+
+***
+
+### Superheterodyne
+This is a classic architecture used in older radios (like those in cars). Instead of converting the signal directly to 0 Hz, it uses a mixer to shift the signal down to a fixed **intermediate frequency (IF)**. This makes the signal easier to filter and process before it is finally converted to a digital signal by an ADC or an analog demodulator.
+
+![](https://pysdr.org/_images/receiver_arch_diagram.svg)
