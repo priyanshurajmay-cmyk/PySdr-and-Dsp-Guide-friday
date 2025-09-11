@@ -828,3 +828,44 @@ The **AntSDR E310** is another model that's very similar to the E200, but with o
 **In short:** The E310 is for people who don't need the flexible USRP mode but want a device where it's simple to use all four channels at once.
 
 ![](https://pysdr.org/_images/AntSDR_E310.png)
+
+# 6. USRP in Python
+
+Of course. Here is a simple explanation of that webpage, perfect for making notes.
+
+### What is a USRP?
+
+A **USRP** (Universal Software Radio Peripheral) is a professional, high-performance type of SDR. Think of it as the more industrial-grade cousin to hobbyist devices like the PlutoSDR. They are known for being very powerful and flexible.
+
+---
+### The Software: UHD
+
+To control a USRP, you don't use the same software as the PlutoSDR. Instead, you use a special set of drivers and software called **UHD** (USRP Hardware Driver). The webpage explains how to install these drivers and a special Python library that lets your Python code talk to the UHD software.
+
+---
+### Using USRP in Python
+
+The core of the guide shows you the Python code to control the USRP.
+
+![](https://pysdr.org/_images/usrp.png)
+
+#### Receiving Signals (Rx) 
+* You learn how to tell the USRP what **frequency** to listen to, what **sample rate** (how fast to capture data) to use, and how to set the **gain** (sensitivity).
+* The main function is `recv_num_samps()` which tells the USRP to "receive a certain number of samples."
+* It also explains how to handle the stream of incoming data from the USRP.
+
+#### Transmitting Signals (Tx) 
+* You learn how to create a signal (a waveform) in Python.
+* The main function is `send_waveform()` which tells the USRP to "transmit this chunk of signal data."
+* It also covers setting the transmit frequency and gain.
+
+---
+### Advanced Features
+
+The guide also touches on some of the more advanced things that make USRPs so powerful:
+
+* **Doing both at once:** How to receive and transmit at the same time using multiple threads in your code.
+* **Synchronization:** How to sync the USRP's internal clock with an external source, which is critical for advanced applications like accurately locating a signal's source.
+* **GPIO Pins:** How to use the USRP's General-Purpose Input/Output pins to control other electronic hardware.
+
+**In short:** The page is a beginner's guide to controlling powerful USRP hardware using Python. It covers everything from setup to the basic code for receiving and transmitting signals, and it briefly introduces some of the advanced features that make USRPs a professional tool.
